@@ -1,0 +1,23 @@
+<resources>
+    <string name="app_name">FruitMVVM</string>
+    <string name="activity_name_bag">Fruit Bag</string>
+    <string name="title_item">Item</string>
+    <string name="title_amount">Amount</string>
+    <string name="title_value">Value</string>
+    <string name="action_delete">Delete All</string>
+    <string name="string_FruitTextView">Press Get Fruit Button</string>
+    <string name="string_FruitButton">Get Fruit</string>
+    <string name="string_BagButton">Fruit Bag: 0/10</string>
+    <string name="string_BagTotal">Fruit Bag: %1$d/10</string>
+    <string name="string_FruitPicked">You picked a %1$s</string>
+
+    <!--Alert Strings-->
+    <string name="alert_title_text">Delete</string>
+    <string name="alert_message_text">Are you sure?</string>
+    <string name="alert_positive_text">Yes</string>
+    <string name="alert_negative_text">Cancel</string>
+
+    <!--Toast Strings-->
+    <string name="toast_deleted_text">Fruit Deleted</string>
+    <string name="toast_alldeleted_text">All Fruit Deleted</string>
+</resources>
