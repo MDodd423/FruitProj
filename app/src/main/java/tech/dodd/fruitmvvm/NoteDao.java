@@ -39,4 +39,7 @@ public interface NoteDao {
 
     @Query("SELECT amount FROM note_table WHERE item LIKE :items")
     Integer getAmountwithItemWithListener(String items);
+
+    @Query("SELECT amount and value FROM note_table WHERE item LIKE :items")
+    Integer getAmountandValuewithItemWithListener(String items);
 }

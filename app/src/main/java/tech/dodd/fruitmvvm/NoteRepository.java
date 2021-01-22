@@ -66,6 +66,18 @@ class NoteRepository {
         }.execute();
     }
 
+    @SuppressLint("StaticFieldLeak")
+    void getNoteAmountandValuewithItem(String item, MainActivity.NoteAmountandValueListener listener) {
+
+        new AsyncTask<Void, Void, Void>() {
+            @Override
+            protected Void doInBackground(Void... voids) {
+                listener.getAmountandValue(noteDao.getAmountandValuewithItemWithListener(item), noteDao.getAmountandValuewithItemWithListener(item));
+                return null;
+            }
+        }.execute();
+    }
+
 
     private static class InsertNoteAsyncTask extends AsyncTask<Note, Void, Void> {
         private final NoteDao noteDao;

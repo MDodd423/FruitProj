@@ -15,10 +15,9 @@ public class MainActivity extends AppCompatActivity {
 
     Button fruitButton, bagButton;
     TextView fruitTextView;
-    Integer randomfruit;
     NoteViewModel noteViewModel;
-    Integer updateamount;
-    String updateitem;
+    Integer randomfruit, updateamount, value;
+    String item;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,30 +46,36 @@ public class MainActivity extends AppCompatActivity {
         void getAmount(Integer amount);
     }
 
+    public interface NoteAmountandValueListener {
+        void getAmountandValue(Integer amount, Integer value);
+    }
+
     public void doGiveFruit() {
         randomfruit = new Random().nextInt(3) + 1; // [0, 2] + 1 => [1, 3]
         switch (randomfruit){
             case 1:
-                updateitem = "Apple";
+                item = "Apple";
+                value = 2;
                 break;
             case 2:
-                updateitem = "Orange";
+                item = "Banana";
+                value = 4;
                 break;
             case 3:
-                updateitem = "Banana";
+                item = "Orange";
+                value = 3;
                 break;
         }
 
-        fruitTextView.setText(getResources().getString(R.string.string_FruitPicked, updateitem));
+        fruitTextView.setText(getResources().getString(R.string.string_FruitPicked, item));
 
-        noteViewModel.getNoteAmountwithItem(updateitem, queryAmount -> {
+        noteViewModel.getNoteAmountwithItem(item, queryAmount -> {
             if (!(queryAmount == null)) {
                 updateamount = (queryAmount + 1);
             } else {
                 updateamount = 1;
             }
-            Integer value = 3;
-            Note note = new Note(updateitem, updateamount, value);
+            Note note = new Note(item, updateamount, value);
             noteViewModel.insert(note);
         });
 

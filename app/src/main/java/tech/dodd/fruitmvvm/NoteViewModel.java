@@ -57,4 +57,8 @@ public class NoteViewModel extends AndroidViewModel {
     void getNoteAmountwithItem(String item, MainActivity.NoteAmountListener listener) {
         repository.getNoteAmountwithItem(item, listener);
     }
+
+    void getNoteAmountandValuewithItem(String item, MainActivity.NoteAmountandValueListener listener) {
+        repository.getNoteAmountandValuewithItem(item, listener);
+    }
 }
