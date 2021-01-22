@@ -18,7 +18,7 @@ public class MainActivity extends AppCompatActivity {
     Button fruitButton, bagButton;
     TextView fruitTextView;
     Integer randomfruit;
-    private NoteViewModel noteViewModel;
+    NoteViewModel noteViewModel;
     Integer updateamount;
     String updateitem;
 
@@ -31,12 +31,9 @@ public class MainActivity extends AppCompatActivity {
         bagButton = findViewById(R.id.bagButton);
         noteViewModel = new ViewModelProvider(this).get(NoteViewModel.class);
 
-        noteViewModel.getCount().observe(this, new Observer<Integer>() {
-            @Override
-            public void onChanged(@Nullable Integer integer) {
-                bagButton.setText(getResources().getString(R.string.string_BagTotal, integer));
-            }
-        });
+        noteViewModel.getCount().observe(this, integer ->
+                bagButton.setText(getResources().getString(R.string.string_BagTotal, integer))
+        );
     }
 
     public void doButtonClick(View v) {
@@ -48,8 +45,11 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    public interface NoteAmountListener {
+        void getAmount(Integer amount);
+    }
+
     public void doGiveFruit() {
-        updateitem = "";
         randomfruit = new Random().nextInt(3) + 1; // [0, 2] + 1 => [1, 3]
         switch (randomfruit){
             case 1:
@@ -65,26 +65,19 @@ public class MainActivity extends AppCompatActivity {
 
         fruitTextView.setText(getResources().getString(R.string.string_FruitPicked, updateitem));
 
-        noteViewModel.getNoteAmountwithItem(updateitem).observe(this, new Observer<Integer>() {
-            @Override
-            public void onChanged(@Nullable Integer queryAmount) {
-                if(!(queryAmount == null)){
-                    updateamount = (queryAmount + 1);
-                }else{
-                    updateamount = 1;
-                }
+        noteViewModel.getNoteAmountwithItem(updateitem, queryAmount -> {
+            if (!(queryAmount == null)) {
+                updateamount = (queryAmount + 1);
+            } else {
+                updateamount = 1;
             }
+            Integer value = 3;
+            Note note = new Note(updateitem, updateamount, value);
+            noteViewModel.insert(note);
         });
 
-        Integer value = 3;
-        Note note = new Note(updateitem, updateamount, value);
-        noteViewModel.insert(note);
-
-        noteViewModel.getCount().observe(this, new Observer<Integer>() {
-            @Override
-            public void onChanged(@Nullable Integer integer) {
-                bagButton.setText(getResources().getString(R.string.string_BagTotal, integer));
-            }
+        noteViewModel.getCount().observe(this, integer -> {
+            bagButton.setText(getResources().getString(R.string.string_BagTotal, integer));
         });
     }
 }

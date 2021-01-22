@@ -25,10 +25,10 @@ public interface NoteDao {
     @Query("DELETE FROM note_table")
     void deleteAllNotes();
 
-    @Query("SELECT item, value, amount FROM note_table ORDER BY item DESC")
+    @Query("SELECT item, value, amount FROM note_table ORDER BY item ASC")
     LiveData<List<Note>> getAllNotesItemSortedASC();
 
-    @Query("SELECT item, value, amount FROM note_table ORDER BY cast((amount) as int) DESC")
+    @Query("SELECT item, value, amount FROM note_table ORDER BY amount DESC")
     LiveData<List<Note>> getAllNotesAmountSortedDESC();
 
     @Query("SELECT item, value, amount FROM note_table ORDER BY cast((amount) as int) ASC")
@@ -37,9 +37,6 @@ public interface NoteDao {
     @Query("SELECT COUNT(*) FROM note_table")
     LiveData<Integer> getCount();
 
-    @Query("SELECT amount FROM note_table WHERE item = 'Apple'")
-    LiveData<Integer> getAmount();
-
     @Query("SELECT amount FROM note_table WHERE item LIKE :items")
-    LiveData<Integer> getAmountwithItem(String items);
+    Integer getAmountwithItemWithListener(String items);
 }

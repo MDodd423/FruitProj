@@ -11,7 +11,7 @@ import androidx.lifecycle.LiveData;
 public class NoteViewModel extends AndroidViewModel {
     private final NoteRepository repository;
     private final LiveData<List<Note>> allNotesItemSortedASC, allNotesAmountSortedDESC, allNotesAmountSortedASC;
-    private final LiveData<Integer> allNotesCount, NoteAmount;
+    private final LiveData<Integer> allNotesCount;
 
     public NoteViewModel(@NonNull Application application) {
         super(application);
@@ -20,7 +20,6 @@ public class NoteViewModel extends AndroidViewModel {
         allNotesAmountSortedDESC = repository.getAllNotesAmountSortedDESC();
         allNotesAmountSortedASC = repository.getAllNotesAmountSortedASC();
         allNotesCount = repository.getCount();
-        NoteAmount = repository.getAmount();
     }
 
     void insert(Note note) {
@@ -55,11 +54,7 @@ public class NoteViewModel extends AndroidViewModel {
         return allNotesCount;
     }
 
-    LiveData<Integer> getAmount() {
-        return NoteAmount;
-    }
-
-    LiveData<Integer> getNoteAmountwithItem(String item) {
-        return repository.getNoteAmountwithItem(item);
+    void getNoteAmountwithItem(String item, MainActivity.NoteAmountListener listener) {
+        repository.getNoteAmountwithItem(item, listener);
     }
 }

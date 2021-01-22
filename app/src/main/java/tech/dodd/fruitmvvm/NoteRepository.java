@@ -1,5 +1,6 @@
 package tech.dodd.fruitmvvm;
 
+import android.annotation.SuppressLint;
 import android.app.Application;
 import android.os.AsyncTask;
 
@@ -10,7 +11,7 @@ import androidx.lifecycle.LiveData;
 class NoteRepository {
     private final NoteDao noteDao;
     private final LiveData<List<Note>> allNotesItemSortedASC, allNotesAmountSortedDESC, allNotesAmountSortedASC;
-    private final LiveData<Integer> allNotesCount, NoteAmount;
+    private final LiveData<Integer> allNotesCount;
 
     NoteRepository(Application application) {
         NoteDatabase database = NoteDatabase.getInstance(application);
@@ -19,7 +20,6 @@ class NoteRepository {
         allNotesAmountSortedDESC = noteDao.getAllNotesAmountSortedDESC();
         allNotesAmountSortedASC = noteDao.getAllNotesAmountSortedASC();
         allNotesCount = noteDao.getCount();
-        NoteAmount = noteDao.getAmount();
     }
 
     void insert(Note note) {
@@ -54,13 +54,18 @@ class NoteRepository {
         return allNotesCount;
     }
 
-    LiveData<Integer> getAmount() {
-        return NoteAmount;
+    @SuppressLint("StaticFieldLeak")
+    void getNoteAmountwithItem(String item, MainActivity.NoteAmountListener listener) {
+
+        new AsyncTask<Void, Void, Void>() {
+            @Override
+            protected Void doInBackground(Void... voids) {
+                listener.getAmount(noteDao.getAmountwithItemWithListener(item));
+                return null;
+            }
+        }.execute();
     }
 
-    LiveData<Integer> getNoteAmountwithItem(String item) {
-        return noteDao.getAmountwithItem(item);
-    }
 
     private static class InsertNoteAsyncTask extends AsyncTask<Note, Void, Void> {
         private final NoteDao noteDao;
