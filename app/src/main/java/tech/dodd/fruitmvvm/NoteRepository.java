@@ -78,7 +78,6 @@ class NoteRepository {
         }.execute();
     }
 
-
     private static class InsertNoteAsyncTask extends AsyncTask<Note, Void, Void> {
         private final NoteDao noteDao;
 

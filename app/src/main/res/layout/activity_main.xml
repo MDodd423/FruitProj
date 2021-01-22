@@ -21,7 +21,6 @@
         android:onClick="doButtonClick"
         android:text="@string/string_FruitButton" />
 
-
     <Button
         android:id="@+id/bagButton"
         android:layout_width="wrap_content"
@@ -30,5 +29,14 @@
         android:layout_marginTop="10dp"
         android:onClick="doButtonClick"
         android:text="@string/string_BagButton" />
+
+    <Button
+        android:id="@+id/boxButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:onClick="doButtonClick"
+        android:text="@string/string_BoxButton" />
 
 </LinearLayout>

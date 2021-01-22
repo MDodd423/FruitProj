@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".BagActivity">
+    tools:context=".BoxActivity">
 
     <LinearLayout
         android:id="@+id/topTitles"
@@ -20,7 +20,7 @@
             android:id="@+id/text_view_item"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="4"
+            android:layout_weight="5"
             android:paddingStart="16dp"
             android:text="@string/title_item"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
@@ -29,18 +29,8 @@
             android:id="@+id/text_view_amount"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="2"
-            android:gravity="end"
+            android:layout_weight="3"
             android:text="@string/title_amount"
-            android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
-
-        <TextView
-            android:id="@+id/text_view_value"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="2"
-            android:gravity="end"
-            android:text="@string/title_value"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
     </LinearLayout>

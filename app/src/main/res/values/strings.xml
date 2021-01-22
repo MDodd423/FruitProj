@@ -1,14 +1,17 @@
 <resources>
     <string name="app_name">FruitMVVM</string>
     <string name="activity_name_bag">Fruit Bag</string>
+    <string name="activity_name_box">Fruit Box</string>
     <string name="title_item">Item</string>
     <string name="title_amount">Amount</string>
     <string name="title_value">Value</string>
+    <string name="title_type">Type</string>
     <string name="action_delete">Delete All</string>
     <string name="string_FruitTextView">Press Get Fruit Button</string>
     <string name="string_FruitButton">Get Fruit</string>
     <string name="string_BagButton">Fruit Bag: 0/10</string>
     <string name="string_BagTotal">Fruit Bag: %1$d/10</string>
+    <string name="string_BoxButton">Fruit Box</string>
     <string name="string_FruitPicked">You picked a %1$s</string>
 
     <!--Alert Strings-->

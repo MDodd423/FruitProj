@@ -13,7 +13,7 @@ import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
 
-    Button fruitButton, bagButton;
+    Button fruitButton, bagButton, boxButton;
     TextView fruitTextView;
     NoteViewModel noteViewModel;
     Integer randomfruit, updateamount, value;
@@ -26,11 +26,12 @@ public class MainActivity extends AppCompatActivity {
         fruitTextView = findViewById(R.id.fruitTextView);
         fruitButton = findViewById(R.id.fruitButton);
         bagButton = findViewById(R.id.bagButton);
+        boxButton = findViewById(R.id.boxButton);
         noteViewModel = new ViewModelProvider(this).get(NoteViewModel.class);
 
-        noteViewModel.getCount().observe(this, integer ->
-                bagButton.setText(getResources().getString(R.string.string_BagTotal, integer))
-        );
+        noteViewModel.getCount().observe(this, integer -> {
+            bagButton.setText(getResources().getString(R.string.string_BagTotal, integer));
+        });
     }
 
     public void doButtonClick(View v) {
@@ -39,6 +40,8 @@ public class MainActivity extends AppCompatActivity {
             doGiveFruit();
         } else if (id == R.id.bagButton) {
             startActivity(new Intent(this, BagActivity.class));
+        } else if (id == R.id.boxButton) {
+            startActivity(new Intent(this, BoxActivity.class));
         }
     }
 
@@ -51,8 +54,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void doGiveFruit() {
-        randomfruit = new Random().nextInt(3) + 1; // [0, 2] + 1 => [1, 3]
-        switch (randomfruit){
+        randomfruit = new Random().nextInt(8) + 1; // [0, 7] + 1 => [1, 8]
+        switch (randomfruit) {
             case 1:
                 item = "Apple";
                 value = 2;
@@ -64,6 +67,26 @@ public class MainActivity extends AppCompatActivity {
             case 3:
                 item = "Orange";
                 value = 3;
+                break;
+            case 4:
+                item = "Strawberry";
+                value = 1;
+                break;
+            case 5:
+                item = "Watermelon";
+                value = 3;
+                break;
+            case 6:
+                item = "Peach";
+                value = 2;
+                break;
+            case 7:
+                item = "Pear";
+                value = 2;
+                break;
+            case 8:
+                item = "Grape";
+                value = 1;
                 break;
         }
 
